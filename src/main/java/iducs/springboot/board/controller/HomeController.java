@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import iducs.springboot.board.domain.User;
 import iducs.springboot.board.service.UserService;
+import iducs.springboot.board.utils.HttpSessionUtils;
 
 @Controller
 public class HomeController {
@@ -29,6 +30,10 @@ public class HomeController {
 	}
 	@GetMapping("/questions/form") // 등록폼은 form URL을 가지도록 규칙화하겠음
 	public String questionForm(HttpSession session, Model model) {
+		
+		if(HttpSessionUtils.isEmpty(session, "user"))
+			return "redirect:/users/login-form";
+		
 		User writer = (User) session.getAttribute("user");
 		model.addAttribute("writer", writer);
 		return "/questions/register";
@@ -57,6 +62,7 @@ public class HomeController {
 	public String registerForm() {
 		return "/users/register";
 	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

@@ -54,6 +54,8 @@
                                 </ul>
                             </div>
                         </article>
+                        
+                        <a th:if="${session.user}" href="/questions/form" class="genric-btn primary radius">글쓰기</a>
 
                         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
