@@ -10,6 +10,7 @@ public class Question {
 	private LocalDateTime createTime;	
 	
 	public Question() {}
+	
 	public Question(String title, User writer, String contents) {
 		super();
 		this.title = title;
